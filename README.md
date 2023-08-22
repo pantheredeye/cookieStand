@@ -30,30 +30,39 @@ To support cash payments, we can provide instructions on how customers can pay i
 - **Layouts**
   - MainLayout: A layout that wraps the entire application, including a header and footer.
     - Design: A full-width background with backgroundPrimary and backgroundSecondary colors split across a gradient. Hidden on small devices.
+  - AdminLayout: A layout specifically for the admin panel.
+    - Design: Similar to MainLayout but with additional admin-specific styling.
 - **Pages**
   - HomePage: Contains the order form for neighbors to select items and submit their orders.
-    - Design: A centered content div: 85% width on fullscreen, 95% on medium, and 100% width on small screens, with primary and secondary colors as background and shadowed border to appear to be floating on top of the mainLayout background.
+    - Design: A centered content div: 85% width on fullscreen, 95% on medium, and 100% width on small screens, with primary and secondary colors as background and shadowed border to appear to be floating on top of the MainLayout background.
   - OrdersPage: Displays the list of pending orders for the seller to manage.
+  - InventoryPage: Allows the daughter to manage the inventory by updating item quantities.
+  - AdminOrdersPage: Allows the daughter to manage orders by updating order statuses.
 - **Components**
   - QRCode: A component to display the generated QR code.
   - OrderForm: A component containing the form for neighbors to place orders.
   - OrderList: A component to display the list of pending orders for the seller.
   - OrderStatus: A component to display and update the status of an individual order.
+  - UpdateItemQuantity: A component for the daughter to update item quantities in the inventory.
+  - UpdateOrderStatus: A component for the daughter to update the status of an order.
 - **Shared Components**
-  - ItemCard: A reusable component to display individual items (used in Homepage and OrdersPage).
+  - ItemCard: A reusable component to display individual items (used in HomePage and OrdersPage).
 - **Cells**
-  - ItemsCell: Fetches the list of available items (used in Homepage).
+  - ItemsCell: Fetches the list of available items (used in HomePage).
   - OrdersCell: Fetches the list of pending orders (used in OrdersPage).
+  - UpdateItemQuantityCell: Fetches and updates item quantities (used in InventoryPage).
+  - UpdateOrderStatusCell: Fetches and updates order statuses (used in AdminOrdersPage).
+
 
 ## Style Guide
 
-primary: '#103362', // Background Primary
-secondary: '#F21530', // Background Secondary
-backgroundPrimary: '#C3619B', // Background Primary (Medium & Large Screens)
-backgroundSecondary: '#D96DA1', // Background Secondary (Medium & Large Screens)
-textPrimary: '#FFFFFF', // Primary Text
-link: '#F21530', // Links
-button: '#ECFD74', // Button Color
-buttonText: '#F21530', // Button Text Color
+- primary: '#103362', // Background Primary
+- secondary: '#F21530', // Background Secondary
+- backgroundPrimary: '#C3619B', // Background Primary (Medium & Large Screens)
+- backgroundSecondary: '#D96DA1', // Background Secondary (Medium & Large Screens)
+- textPrimary: '#FFFFFF', // Primary Text
+- link: '#F21530', // Links
+- button: '#ECFD74', // Button Color
+- buttonText: '#F21530', // Button Text Color
 
 

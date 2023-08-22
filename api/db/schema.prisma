@@ -8,11 +8,49 @@ generator client {
   binaryTargets = "native"
 }
 
-// Define your own datamodels here and run `yarn redwood prisma migrate dev`
-// to create migrations for them and apply to your dev DB.
-// TODO: Please remove the following example:
-model UserExample {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+// To handle item inventory and track orders, you can use the following approach:
+
+// 1. Item inventory: The Item model should have a quantity property to represent the available quantity of each item. Whenever an order is placed, you can decrement the quantity of the corresponding items. If the daughter updates the inventory throughout the day, you can provide her with an interface to update the quantity of items in the database. This can be done through a separate admin panel or a protected route that only the daughter can access.
+
+// 2. Tracking orders: The Order model should have a reference to the User model to associate the order with the customer. It can also have a reference to the OrderItem model to track the items included in the order. The Order model can have a status property to represent the current status of the order (e.g., pending, in delivery, delivered). The daughter can update the order status through the OrdersPage, and customers can track their orders by viewing the order status.
+
+// Regarding the integration with Stripe for payment processing, you can store the Stripe customer ID in the User model to associate the user with their Stripe account. When a customer places an order and chooses online payment, you can create a Stripe payment session and associate it with the order. Once the payment is successful, you can update the order status accordingly.
+
+// To summarize, the data model for the app using Prisma can include the User, Item, Order, and OrderItem models. The Item model can have a quantity property to handle inventory, and the Order model can have a status property to track the order status. The User model can store the Stripe customer ID for online payment integration. The daughter can update the inventory throughout the day by modifying the quantity of items in the database.
+
+model User {
+  id       Int     @id @default(autoincrement())
+  name     String
+  email    String  @unique
+  address  String
+  orders   Order[]
+  stripeId String? // Optional Stripe customer ID
+}
+
+model Item {
+  id          Int         @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  quantity    Int
+  orderItems  OrderItem[]
+}
+
+model Order {
+  id            Int         @id @default(autoincrement())
+  orderNumber   String
+  userId        Int
+  user          User        @relation(fields: [userId], references: [id])
+  orderItems    OrderItem[]
+  paymentMethod String
+  status        String
+}
+
+model OrderItem {
+  id       Int   @id @default(autoincrement())
+  itemId   Int
+  item     Item  @relation(fields: [itemId], references: [id])
+  orderId  Int
+  order    Order @relation(fields: [orderId], references: [id])
+  quantity Int
 }
