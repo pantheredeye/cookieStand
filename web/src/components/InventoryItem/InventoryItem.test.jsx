@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import UpdateItemQuantity from './UpdateItemQuantity'
+import InventoryItem from './InventoryItem'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('UpdateItemQuantity', () => {
+describe('InventoryItem', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<UpdateItemQuantity />)
+      render(<InventoryItem />)
     }).not.toThrow()
   })
 })

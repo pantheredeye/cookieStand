@@ -10,8 +10,8 @@
 //
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
-import UpdateItemQuantity from './UpdateItemQuantity'
+import InventoryItemForm from './InventoryItemForm'
 
-export default { component: UpdateItemQuantity }
+export default { component: InventoryItemForm }
 
 export const Primary = {}

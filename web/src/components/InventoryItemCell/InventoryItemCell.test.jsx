@@ -1,6 +1,6 @@
 import { render } from '@redwoodjs/testing/web'
-import { Loading, Empty, Failure, Success } from './UpdateOrderStatusCell'
-import { standard } from './UpdateOrderStatusCell.mock'
+import { Loading, Empty, Failure, Success } from './InventoryItemCell'
+import { standard } from './InventoryItemCell.mock'
 
 // Generated boilerplate tests do not account for all circumstances
 // and can fail without adjustments, e.g. Float and DateTime types.
@@ -8,7 +8,7 @@ import { standard } from './UpdateOrderStatusCell.mock'
 //        https://redwoodjs.com/docs/testing#testing-cells
 // https://redwoodjs.com/docs/testing#jest-expect-type-considerations
 
-describe('UpdateOrderStatusCell', () => {
+describe('InventoryItemCell', () => {
   it('renders Loading successfully', () => {
     expect(() => {
       render(<Loading />)
@@ -35,7 +35,7 @@ describe('UpdateOrderStatusCell', () => {
 
   it('renders Success successfully', async () => {
     expect(() => {
-      render(<Success updateOrderStatus={standard().updateOrderStatus} />)
+      render(<Success inventoryItem={standard().inventoryItem} />)
     }).not.toThrow()
   })
 })

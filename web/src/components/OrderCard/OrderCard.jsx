@@ -1,13 +1,10 @@
-import UpdateOrderStatusCell from 'src/components/UpdateOrderStatusCell'
-
-const OrderCard = ({ order }) => {
+const Ordercard = () => {
   return (
     <div>
-      <h2>Order {order.orderNumber}</h2>
-      <p>Status: {order.status}</p>
-      <UpdateOrderStatusCell orderId={order.id} />
+      <h2>{'Ordercard'}</h2>
+      <p>{'Find me in ./web/src/components/Ordercard/Ordercard.jsx'}</p>
     </div>
   )
 }
 
-export default OrderCard
+export default Ordercard

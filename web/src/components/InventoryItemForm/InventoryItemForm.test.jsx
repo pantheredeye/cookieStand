@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import UpdateOrderStatus from './UpdateOrderStatus'
+import InventoryItemForm from './InventoryItemForm'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('UpdateOrderStatus', () => {
+describe('InventoryItemForm', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<UpdateOrderStatus />)
+      render(<InventoryItemForm />)
     }).not.toThrow()
   })
 })

@@ -10,8 +10,8 @@
 //
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
-import Ordercard from './Ordercard'
+import OrderItem from './OrderItem'
 
-export default { component: Ordercard }
+export default { component: OrderItem }
 
 export const Primary = {}

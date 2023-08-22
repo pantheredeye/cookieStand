@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import Ordercard from './Ordercard'
+import ItemCard from './ItemCard'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe('Ordercard', () => {
+describe('ItemCard', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<Ordercard />)
+      render(<ItemCard />)
     }).not.toThrow()
   })
 })

@@ -10,8 +10,8 @@
 //
 // See https://storybook.js.org/docs/react/writing-stories/args.
 
-import UpdateOrderStatus from './UpdateOrderStatus'
+import InventoryItem from './InventoryItem'
 
-export default { component: UpdateOrderStatus }
+export default { component: InventoryItem }
 
 export const Primary = {}

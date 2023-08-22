@@ -1,6 +1,6 @@
 export const QUERY = gql`
-  query FindUpdateItemQuantityQuery($id: Int!) {
-    updateItemQuantity: updateItemQuantity(id: $id) {
+  query ItemsQuery {
+    items {
       id
     }
   }
@@ -14,6 +14,12 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ updateItemQuantity }) => {
-  return <div>{JSON.stringify(updateItemQuantity)}</div>
+export const Success = ({ items }) => {
+  return (
+    <ul>
+      {items.map((item) => {
+        return <li key={item.id}>{JSON.stringify(item)}</li>
+      })}
+    </ul>
+  )
 }

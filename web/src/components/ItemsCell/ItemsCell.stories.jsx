@@ -1,8 +1,8 @@
-import { Loading, Empty, Failure, Success } from './UpdateOrderStatusCell'
-import { standard } from './UpdateOrderStatusCell.mock'
+import { Loading, Empty, Failure, Success } from './ItemsCell'
+import { standard } from './ItemsCell.mock'
 
 const meta = {
-  title: 'Cells/UpdateOrderStatusCell',
+  title: 'Cells/ItemsCell',
 }
 
 export default meta

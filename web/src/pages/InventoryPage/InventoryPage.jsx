@@ -1,6 +1,6 @@
 import { MetaTags } from '@redwoodjs/web'
 
-import UpdateItemQuantityCell from 'src/components/UpdateItemQuantityCell'
+import ItemsCell from 'src/components/ItemsCell/ItemsCell'
 
 const InventoryPage = () => {
   return (
@@ -8,7 +8,7 @@ const InventoryPage = () => {
       <MetaTags title="Inventory" description="Inventory page" />
 
       <h1>InventoryPage</h1>
-      <UpdateItemQuantityCell />
+      <ItemsCell />
     </>
   )
 }
