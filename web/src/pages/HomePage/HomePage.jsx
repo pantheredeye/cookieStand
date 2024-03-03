@@ -1,20 +1,21 @@
-import { Link, routes } from '@redwoodjs/router'
-import { MetaTags } from '@redwoodjs/web'
+import { useState } from 'react'
+
+import OrderForm from 'src/components/OrderForm/OrderForm'
 
 const HomePage = () => {
-  return (
-    <>
-      <MetaTags title="Home" description="Home page" />
+  const [orderItems, setOrderItems] = useState([])
 
-      <h1>HomePage</h1>
-      <p>
-        Find me in <code>./web/src/pages/HomePage/HomePage.jsx</code>
-      </p>
-      <p>
-        My default route is named <code>home</code>, link to me with `
-        <Link to={routes.home()}>Home</Link>`
-      </p>
-    </>
+  return (
+    <div className="home">
+      <header>
+        <p>The Cookie Stand</p>
+      </header>
+      <main>
+        <section className="orderform">
+          <OrderForm orderItems={orderItems} setOrderItems={setOrderItems} />
+        </section>
+      </main>
+    </div>
   )
 }
 

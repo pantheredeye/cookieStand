@@ -44,6 +44,8 @@ model Order {
   orderItems    OrderItem[]
   paymentMethod String
   status        String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model OrderItem {
