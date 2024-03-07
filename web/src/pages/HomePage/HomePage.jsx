@@ -23,27 +23,27 @@ const PLACE_ORDER_MUTATION = gql`
     }
   }
 `
-mutation CreateOrder($input: CreateOrderInput!) {
-  createOrder(input: $input) {
-    id
-    orderNumber
-    user {
-      id
-    }
-    orderItems {
-      id
-      item {
-        id
-        name
-      }
-      quantity
-    }
-    paymentMethod
-    status
-    createdAt
-    updatedAt
-  }
-}
+// mutation CreateOrder($input: CreateOrderInput!) {
+//   createOrder(input: $input) {
+//     id
+//     orderNumber
+//     user {
+//       id
+//     }
+//     orderItems {
+//       id
+//       item {
+//         id
+//         name
+//       }
+//       quantity
+//     }
+//     paymentMethod
+//     status
+//     createdAt
+//     updatedAt
+//   }
+// }
 
 const HomePage = () => {
   const [orderDetails, setOrderDetails] = useState({}) // Assuming this holds your order data
@@ -51,9 +51,8 @@ const HomePage = () => {
 
   // callback function to store state changes from the cell
   const handleQuantityChange = (itemId, quantity) => {
-    setOrderItemsDetails(prev => ({ ...prev, [itemId]: quantity }));
-  };
-
+    setOrderItemsDetails((prev) => ({ ...prev, [itemId]: quantity }))
+  }
 
   const [placeOrder, { loading, error }] = useMutation(PLACE_ORDER_MUTATION, {
     onCompleted: () => {
