@@ -1,14 +1,14 @@
-import { render } from "@redwoodjs/testing/web";
+import { render } from '@redwoodjs/testing/web'
 
-import OrderForm from "./OrderForm";
+import OrderForm from './OrderForm'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //    https://redwoodjs.com/docs/testing#testing-components
 
-describe("OrderForm", () => {
-  it("renders successfully", () => {
+describe('OrderForm', () => {
+  it('renders successfully', () => {
     expect(() => {
-      render(<OrderForm />);
-    }).not.toThrow();
-  });
-});
+      render(<OrderForm />)
+    }).not.toThrow()
+  })
+})

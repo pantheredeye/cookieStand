@@ -23,6 +23,7 @@ const PLACE_ORDER_MUTATION = gql`
     }
   }
 `
+<<<<<<< HEAD
 // mutation CreateOrder($input: CreateOrderInput!) {
 //   createOrder(input: $input) {
 //     id
@@ -44,6 +45,8 @@ const PLACE_ORDER_MUTATION = gql`
 //     updatedAt
 //   }
 // }
+=======
+>>>>>>> 146d9f0f43ed868f7720def361aef7cc17e05473
 
 const HomePage = () => {
   const [orderDetails, setOrderDetails] = useState({}) // Assuming this holds your order data
@@ -51,7 +54,13 @@ const HomePage = () => {
 
   // callback function to store state changes from the cell
   const handleQuantityChange = (itemId, quantity) => {
+<<<<<<< HEAD
     setOrderItemsDetails((prev) => ({ ...prev, [itemId]: quantity }))
+=======
+    setOrderItemsDetails((prev) =>
+      prev.map((item) => (item.id === itemId ? { ...item, quantity } : item))
+    )
+>>>>>>> 146d9f0f43ed868f7720def361aef7cc17e05473
   }
 
   const [placeOrder, { loading, error }] = useMutation(PLACE_ORDER_MUTATION, {
@@ -64,15 +73,22 @@ const HomePage = () => {
 
   const handleSubmitOrder = async () => {
     try {
-      await placeOrder({
+      const result = await placeOrder({
         variables: {
-          order: orderDetails, // Ensure these details match your expected input structure
-          orderItems: orderItemsDetails, // Ensure these details match your expected input structure
+          order: orderDetails,
+          orderItems: orderItemsDetails.map((item) => ({
+            orderId: item.id, // Assuming this is required
+            quantity: item.quantity,
+          })),
         },
       })
-      // Additional success handling as needed
+      if (!result || !result.data) {
+        throw new Error('Failed to place order')
+      }
+      alert(
+        `Your order has been placed successfully. Order ID: ${result.data.createOrder.id}`
+      )
     } catch (error) {
-      // Error handling is here if needed
       console.error('Error submitting order:', error)
     }
   }

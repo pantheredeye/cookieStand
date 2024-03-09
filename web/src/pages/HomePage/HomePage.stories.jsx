@@ -1,9 +1,9 @@
-import HomePage from "./HomePage";
+import HomePage from './HomePage'
 
 const meta = {
   component: HomePage,
-};
+}
 
-export default meta;
+export default meta
 
-export const Primary = {};
+export const Primary = {}
