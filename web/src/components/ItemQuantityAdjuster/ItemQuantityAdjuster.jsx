@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import { useOrder } from 'src/providers/context/OrderContext' // Import useOrder hook
 import { usePageContext } from 'src/providers/context/PageContext'
-import { useOrder } from 'src/providers/OrderContext' // Import useOrder hook
 
 const ItemQuantityAdjuster = ({ item }) => {
   const [pageContext] = usePageContext() // Use the context to get the current page type

@@ -1,6 +1,6 @@
 // web/src/providers/context/index.js
-import { OrderProvider } from './OrderContext' // Import the OrderProvider
-import { PageContextProvider } from './PageContext'
+import { OrderProvider } from './context/OrderContext' // Import the OrderProvider
+import { PageContextProvider } from './context/PageContext'
 
 const AllContextProviders = ({ children }) => {
   return (

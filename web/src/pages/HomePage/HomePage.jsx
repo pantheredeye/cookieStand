@@ -1,5 +1,5 @@
 import ItemsCell from 'src/components/ItemsCell/ItemsCell'
-import { useOrder } from 'src/providers/OrderContext'
+import { useOrder } from 'src/providers/context/OrderContext'
 
 const HomePage = () => {
   const { submitOrder } = useOrder()
