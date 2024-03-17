@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 
 import { usePageContext } from 'src/providers/context/PageContext'
-const ItemQuantityAdjuster = ({ item, onQuantityChange }) => {
+import { useOrder } from 'src/providers/OrderContext' // Import useOrder hook
+
+const ItemQuantityAdjuster = ({ item }) => {
   const [pageContext] = usePageContext() // Use the context to get the current page type
+  const { updateItemQuantity } = useOrder() // Use the updateItemQuantity function from OrderContext
   const [quantity, setQuantity] = useState(0) // Initialize with 0
 
   // Adjust quantity state based on the page context when the component mounts
@@ -13,16 +16,23 @@ const ItemQuantityAdjuster = ({ item, onQuantityChange }) => {
     // If it's not the Inventory page, we keep it at 0 or could adjust based on other conditions
   }, [pageContext.pageType, item.quantity])
 
+  // This function updates both the local component state and the global order state
+  const handleQuantityChange = (newQuantity) => {
+    setQuantity(newQuantity)
+    // Update the global order state only if the current page type is "Order"
+    if (pageContext.pageType === 'Order') {
+      updateItemQuantity(item.id, newQuantity)
+    }
+  }
+
   const handleDecrease = () => {
     const newQuantity = Math.max(0, quantity - 1) // Ensure quantity doesn't go below 0
-    setQuantity(newQuantity)
-    onQuantityChange(item.id, newQuantity)
+    handleQuantityChange(newQuantity)
   }
 
   const handleIncrease = () => {
     const newQuantity = quantity + 1
-    setQuantity(newQuantity)
-    onQuantityChange(item.id, newQuantity)
+    handleQuantityChange(newQuantity)
   }
 
   const handleChange = (event) => {
@@ -31,11 +41,9 @@ const ItemQuantityAdjuster = ({ item, onQuantityChange }) => {
     if (isNaN(newQuantity) || newQuantity < 0) {
       newQuantity = 0
     }
-    setQuantity(newQuantity)
-    onQuantityChange(item.id, newQuantity)
+    handleQuantityChange(newQuantity)
   }
 
-  // ItemQuantityAdjuster component
   return (
     <div className="flex items-center justify-center space-x-2">
       <button

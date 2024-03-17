@@ -1,10 +1,13 @@
 // web/src/providers/context/index.js
-
-import { PageContextProvider } from './context/PageContext'
+import { OrderProvider } from './OrderContext' // Import the OrderProvider
+import { PageContextProvider } from './PageContext'
 
 const AllContextProviders = ({ children }) => {
-  // Add additional context providers here
-  return <PageContextProvider>{children}</PageContextProvider>
+  return (
+    <PageContextProvider>
+      <OrderProvider>{children}</OrderProvider> {/* Add OrderProvider */}
+    </PageContextProvider>
+  )
 }
 
 export default AllContextProviders

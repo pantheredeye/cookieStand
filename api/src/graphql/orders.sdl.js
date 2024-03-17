@@ -15,12 +15,16 @@ export const schema = gql`
   }
 
   input CreateOrderInput {
-    orderNumber: String!
     userId: Int!
+    items: [OrderItemInput!]!
     paymentMethod: String!
     status: String!
   }
 
+  input OrderItemInput {
+    itemId: Int!
+    quantity: Int!
+  }
   input UpdateOrderInput {
     orderNumber: String
     userId: Int
