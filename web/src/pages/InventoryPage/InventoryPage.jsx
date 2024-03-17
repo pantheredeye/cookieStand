@@ -76,7 +76,7 @@ const InventoryPage = () => {
               </div>
               {error && (
                 <p className="mt-4 text-center text-xl text-red-500">
-                  Error updateing inventory: {error.message}
+                  Error updating inventory: {error.message}
                 </p>
               )}
             </section>
