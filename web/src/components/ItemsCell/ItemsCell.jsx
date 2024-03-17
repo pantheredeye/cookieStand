@@ -33,20 +33,22 @@ export const Success = ({ items }) => {
   }
 
   return (
-    <ul className="space-y-4">
+    <div className="flex flex-wrap justify-center gap-4">
       {items.map((item) => (
-        <li key={item.id} className="rounded-lg p-4 shadow">
-          <div>
-            <h3 className="text-lg font-semibold">{item.name}</h3>
-            <p className="text-sm">{item.description}</p>
-            <p className="text-md font-bold">Price: ${item.price}</p>
+        <div key={item.id} className="w-full p-4 md:w-1/2 lg:w-1/3">
+          <div className="rounded-xl bg-white p-5 shadow-lg transition-shadow duration-300 ease-in-out hover:shadow-2xl">
+            <h3 className="font-playful text-2xl text-blue-900">{item.name}</h3>
+            <p className="text-md text-gray-700">{item.description}</p>
+            <p className="text-lg font-bold text-blue-900">
+              Price: ${item.price}
+            </p>
             <ItemQuantityAdjuster
               item={item}
               onQuantityChange={handleQuantityChange}
             />
           </div>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   )
 }

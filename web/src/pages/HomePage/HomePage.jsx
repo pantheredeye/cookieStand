@@ -66,27 +66,33 @@ const HomePage = () => {
   }
 
   return (
-    <div className="home">
-      <header>
-        <p>The Cookie Stand</p>
-      </header>
-      <main>
-        <section className="orderform">
-          <ItemsCell />
-          <button
-            onClick={handleSubmitOrder}
-            disabled={loading}
-            className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
-          >
-            Submit Order
-          </button>
-          {error && (
-            <p className="text-red-500">
-              Error submitting order: {error.message}
-            </p>
-          )}
-        </section>
-      </main>
+    <div className="flex min-h-screen items-center justify-center bg-pink-300">
+      <div className="container mx-auto p-4">
+        <header className="rounded-lg bg-blue-900 p-8 text-center text-white shadow-xl">
+          <h1 className="font-playful text-4xl uppercase tracking-widest">
+            The Cookie Stand
+          </h1>
+        </header>
+        <main className="mt-8">
+          <section className="text-center">
+            <ItemsCell />
+            <div className="mt-4">
+              <button
+                onClick={handleSubmitOrder}
+                disabled={loading}
+                className="transform rounded-full bg-yellow-400 px-8 py-3 text-xl font-bold text-blue-900 shadow-lg transition hover:scale-105 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300"
+              >
+                Submit Order
+              </button>
+            </div>
+            {error && (
+              <p className="mt-4 text-center text-xl text-red-500">
+                Error submitting order: {error.message}
+              </p>
+            )}
+          </section>
+        </main>
+      </div>
     </div>
   )
 }

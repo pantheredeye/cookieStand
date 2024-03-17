@@ -3,6 +3,9 @@ module.exports = {
   content: ['src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        playful: ['"Fredoka One"', '"Bangers"', 'cursive'], // Use your custom font here
+      },
       colors: {
         primary: '#103362', // Background Primary
         secondary: '#F21530', // Background Secondary
