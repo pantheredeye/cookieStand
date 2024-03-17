@@ -13,9 +13,8 @@ const Routes = () => {
   return (
     <Router>
       <Route path="/orders" page={OrdersPage} name="orders" />
-      <Route path="/admin-orders" page={AdminOrdersPage} name="adminOrders" />
       <Route path="/inventory" page={InventoryPage} name="inventory" />
-      <Route path="/home" page={HomePage} name="home" />
+      <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )

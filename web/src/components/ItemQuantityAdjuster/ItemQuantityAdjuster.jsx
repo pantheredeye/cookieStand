@@ -1,7 +1,11 @@
 import { useState } from 'react'
 
-const ItemQuantityAdjuster = ({ item, onQuantityChange }) => {
-  const [quantity, setQuantity] = useState(0) // Set initial quantity to 0
+const ItemQuantityAdjuster = ({
+  item,
+  onQuantityChange,
+  initialQuantity = 0,
+}) => {
+  const [quantity, setQuantity] = useState(initialQuantity)
 
   const handleDecrease = () => {
     const newQuantity = Math.max(0, quantity - 1) // Ensure quantity doesn't go below 0
