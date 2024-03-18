@@ -38,7 +38,7 @@ model Item {
 
 model Order {
   id            Int         @id @default(autoincrement())
-  orderNumber   String
+  // orderNumber   String
   userId        Int
   user          User        @relation(fields: [userId], references: [id])
   orderItems    OrderItem[]

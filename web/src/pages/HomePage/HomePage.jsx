@@ -1,12 +1,52 @@
+import { useMutation } from '@redwoodjs/web'
+
 import ItemsCell from 'src/components/ItemsCell/ItemsCell'
 import { useOrder } from 'src/providers/context/OrderContext'
 
+const CREATE_ORDER_MUTATION = gql`
+  mutation CreateOrderMutation($input: CreateOrderInput!) {
+    createOrder(input: $input) {
+      id
+      userId
+      paymentMethod
+      status
+    }
+  }
+`
 const HomePage = () => {
-  const { submitOrder } = useOrder()
-  // `loading` and `error` states can be managed here if needed
+  const [createOrder, { loading, error }] = useMutation(CREATE_ORDER_MUTATION)
 
-  const handleSubmitOrder = () => {
-    submitOrder() // This should trigger the GraphQL mutation
+  const { items, clearOrder } = useOrder()
+
+  const handleSubmitOrder = async () => {
+    // Example data - replace with actual data from your application
+    const userId = 1 // This should come from your authentication state/context
+    const paymentMethod = 'Credit Card' // Example, adjust based on user selection
+    const status = 'Pending' // Initial status, could be dynamic based on your logic
+
+    // Assuming `orderItems` is an array of objects with `itemId` and `quantity`
+    const orderItems = items.map((item) => ({
+      itemId: item.itemId,
+      quantity: item.quantity,
+    }))
+
+    try {
+      const response = await createOrder({
+        variables: {
+          input: {
+            userId,
+            orderItems,
+            paymentMethod,
+            status,
+          },
+        },
+      })
+
+      console.log('Order submitted successfully:', response.data)
+      clearOrder() // Clear the order state after successful submission
+    } catch (error) {
+      console.error('Error submitting order:', error)
+    }
   }
 
   return (

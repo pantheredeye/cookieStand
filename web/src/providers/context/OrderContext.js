@@ -24,8 +24,19 @@ export const OrderProvider = ({ children }) => {
     })
   }
 
-  const submitOrder = () => {
-    // Placeholder for now, we'll use this to trigger the GraphQL mutation
+  const submitOrder = async (orderDetails) => {
+    console.log('Submitting order:', orderDetails)
+    try {
+      const response = await createOrder({
+        variables: {
+          input: orderDetails,
+        },
+      })
+      console.log('Order submitted successfully', response.data)
+      clearOrder()
+    } catch (error) {
+      console.error('Error submitting order', error)
+    }
   }
 
   const clearOrder = () => {

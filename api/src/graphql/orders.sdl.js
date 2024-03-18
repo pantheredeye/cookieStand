@@ -1,7 +1,6 @@
 export const schema = gql`
   type Order {
     id: Int!
-    orderNumber: String!
     userId: Int!
     user: User!
     orderItems: [OrderItem]!
@@ -16,7 +15,7 @@ export const schema = gql`
 
   input CreateOrderInput {
     userId: Int!
-    items: [OrderItemInput!]!
+    orderItems: [OrderItemInput!]!
     paymentMethod: String!
     status: String!
   }
@@ -26,7 +25,6 @@ export const schema = gql`
     quantity: Int!
   }
   input UpdateOrderInput {
-    orderNumber: String
     userId: Int
     paymentMethod: String
     status: String
