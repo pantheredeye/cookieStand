@@ -1,7 +1,10 @@
+import { useEffect } from 'react'
+
 import { useMutation } from '@redwoodjs/web'
 
 import ItemsCell from 'src/components/ItemsCell/ItemsCell'
 import { useOrder } from 'src/providers/context/OrderContext'
+import { usePageContext } from 'src/providers/context/PageContext'
 
 const CREATE_ORDER_MUTATION = gql`
   mutation CreateOrderMutation($input: CreateOrderInput!) {
@@ -13,11 +16,19 @@ const CREATE_ORDER_MUTATION = gql`
     }
   }
 `
+
 const HomePage = () => {
+  const [, setPageContext] = usePageContext() // Destructure to get setState equivalent
+
+  useEffect(() => {
+    // Set the page context when the component mounts
+    setPageContext({ pageType: 'Order' })
+  }, [setPageContext])
+
   const [createOrder, { loading, error }] = useMutation(CREATE_ORDER_MUTATION)
 
   const { items, clearOrder } = useOrder()
-
+  console.log(items)
   const handleSubmitOrder = async () => {
     // Example data - replace with actual data from your application
     const userId = 1 // This should come from your authentication state/context
