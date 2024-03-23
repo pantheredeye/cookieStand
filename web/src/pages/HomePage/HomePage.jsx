@@ -27,7 +27,7 @@ const HomePage = () => {
 
   const [createOrder, { loading, error }] = useMutation(CREATE_ORDER_MUTATION)
 
-  const { items, clearOrder } = useOrder()
+  const { orderItems: items, clearOrder } = useOrder()
   console.log(items)
   const handleSubmitOrder = async () => {
     // Example data - replace with actual data from your application
