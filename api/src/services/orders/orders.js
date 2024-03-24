@@ -11,10 +11,25 @@ export const order = ({ id }) => {
 }
 
 export const createOrder = ({ input }) => {
+  // Destructure the input to separate `orderItems` from the rest of the order data
+  const { orderItems, ...orderData } = input;
+
+  // Transform `orderItems` into the structure Prisma expects for nested creation
+  const transformedOrderItems = {
+    create: orderItems.map(item => ({
+      itemId: item.itemId,
+      quantity: item.quantity,
+    })),
+  };
+
   return db.order.create({
-    data: input,
-  })
-}
+    data: {
+      ...orderData,
+      orderItems: transformedOrderItems,
+    },
+  });
+};
+
 
 export const updateOrder = ({ id, input }) => {
   return db.order.update({
