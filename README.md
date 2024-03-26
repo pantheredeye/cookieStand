@@ -1,28 +1,28 @@
 # README: Neighborhood Baked Goods and Lemonade Store
 
-This is a RedwoodJS application for selling baked goods and lemonade in your neighborhood. Neighbors can scan a QR code to access an order form, choose their desired items, and submit their orders. You can then check the site for pending orders, package them, and deliver them to the customers. The order status can be updated to show delivery progress and completion.
+Welcome to the README for the Neighborhood Baked Goods and Lemonade Store application. This RedwoodJS-based application facilitates the sale of delicious baked goods and refreshing lemonade within your neighborhood. Below, you'll find a breakdown of the main features and functionalities of this application.
 
 ## Main Features
 
-### Submit Order
+### 1. Submit Order
 
-Customer can create order and submit. Customer will log in & create account details like address for pickup location, or phone number for possible notifications. Should be able to add purchase option. At first - Cash on Delivery. Possible Stripe Integration. Indicate pickup location: at table (show address) or at home (delivery tip requested?). Authorized: user/owner. Items should not show if inventory is 0. Items should not be able to go above current inventory amount. Make a note on submission if over cap (if someone purchases at same time, page might have old inventory data and might not alert user in-client).
+Customers can easily create and submit orders through the application. They will be prompted to log in or create an account, providing necessary details such as their address for pickup or delivery preferences. Customers can select from available purchase options, with the possibility of integrating payment methods like Stripe for online transactions. The system ensures that items unavailable due to inventory depletion are not displayed, and it provides notifications if an order exceeds available inventory.
 
-### View Orders
+### 2. View Orders
 
-Seller should be able to see the orders in the queue. Should be able to interact by 'completing' orders. On Completion, would be good to reduce inventory amount by completion amount. Might be good to reduce amount on order submittal, so that other orders can't go over current inventory. Authorized: owner.
+Sellers have access to a queue of pending orders, allowing them to track and manage incoming requests. Sellers can mark orders as 'completed,' which triggers inventory adjustments to reflect the fulfilled items. The system also ensures that inventory levels are maintained accurately by deducting quantities upon order submission or completion.
 
-### Order Notifications
+### 3. Order Notifications
 
-It would be a nice to have to have some sort of notification to the Seller on order purchase and possibly to buyer on order status updates. Email is cheapest so go with that for now. Unless streaming into the app for notifications is easy.
+The application supports notifications to both sellers and buyers for order-related events. Sellers receive notifications upon order purchase, facilitating prompt action. Additionally, buyers can receive updates on their order status, enhancing communication and customer satisfaction. Initially, email notifications are implemented, with the potential for in-app notifications in future iterations.
 
-### Edit Inventory
+### 4. Edit Inventory
 
-Seller will be able to edit the inventory: items and quantities, add and remove. Authorized: owner.
+Sellers have the ability to manage inventory effortlessly within the application. This includes adding, removing, and adjusting item quantities based on availability and demand. Access to inventory management is restricted to authorized owners, ensuring data integrity and security.
 
 #### Request Form
 
-It would be cool for users to request certain items be made.
+To foster community engagement, users can submit requests for specific items they'd like to see offered within the store. This feature encourages user feedback and enhances the product offering based on customer preferences.
 
 
 ### User Personas
