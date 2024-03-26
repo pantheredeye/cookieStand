@@ -1,6 +1,29 @@
-## README: Neighborhood Baked Goods and Lemonade Store
+# README: Neighborhood Baked Goods and Lemonade Store
 
 This is a RedwoodJS application for selling baked goods and lemonade in your neighborhood. Neighbors can scan a QR code to access an order form, choose their desired items, and submit their orders. You can then check the site for pending orders, package them, and deliver them to the customers. The order status can be updated to show delivery progress and completion.
+
+## Main Features
+
+### Submit Order
+
+Customer can create order and submit. Customer will log in & create account details like address for pickup location, or phone number for possible notifications. Should be able to add purchase option. At first - Cash on Delivery. Possible Stripe Integration. Indicate pickup location: at table (show address) or at home (delivery tip requested?). Authorized: user/owner. Items should not show if inventory is 0. Items should not be able to go above current inventory amount. Make a note on submission if over cap (if someone purchases at same time, page might have old inventory data and might not alert user in-client).
+
+### View Orders
+
+Seller should be able to see the orders in the queue. Should be able to interact by 'completing' orders. On Completion, would be good to reduce inventory amount by completion amount. Might be good to reduce amount on order submittal, so that other orders can't go over current inventory. Authorized: owner.
+
+### Order Notifications
+
+It would be a nice to have to have some sort of notification to the Seller on order purchase and possibly to buyer on order status updates. Email is cheapest so go with that for now. Unless streaming into the app for notifications is easy.
+
+### Edit Inventory
+
+Seller will be able to edit the inventory: items and quantities, add and remove. Authorized: owner.
+
+#### Request Form
+
+It would be cool for users to request certain items be made.
+
 
 ### User Personas
 
