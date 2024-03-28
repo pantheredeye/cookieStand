@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 import { useMutation } from '@redwoodjs/web'
 
@@ -19,6 +19,7 @@ const CREATE_ORDER_MUTATION = gql`
 
 const HomePage = () => {
   const [, setPageContext] = usePageContext() // Destructure to get setState equivalent
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
     // Set the page context when the component mounts
@@ -53,10 +54,19 @@ const HomePage = () => {
         },
       })
 
-      console.log('Order submitted successfully:', response.data)
       clearOrder() // Clear the order state after successful submission
     } catch (error) {
       console.error('Error submitting order:', error)
+
+      // Attempt to extract the detailed error message from extensions.originalError.message
+      const detailedErrorMessage =
+        error.graphQLErrors?.[0]?.extensions?.originalError?.message
+
+      // Fallback to a generic message if the specific one is not found
+      const message =
+        detailedErrorMessage ||
+        'An unexpected error occurred. Please try again.'
+      setErrorMessage(message)
     }
   }
 
@@ -70,6 +80,11 @@ const HomePage = () => {
         </header>
         <main className="mt-8">
           <section className="text-center">
+            {errorMessage && (
+              <div className="mb-4 rounded-md bg-red-100 p-4 text-red-700">
+                {errorMessage}
+              </div>
+            )}
             <ItemsCell />
             <div className="mt-4">
               <button
