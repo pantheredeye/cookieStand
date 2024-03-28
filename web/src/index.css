@@ -16,3 +16,15 @@
 /**
  * END --- SETUP TAILWINDCSS EDIT
  */
+
+ .error-message {
+  transition: opacity 1.5s ease-in-out; /* Smooth transition for the opacity */
+  opacity: 1; /* Start fully visible */
+}
+
+.error-message.hide {
+  opacity: 0; /* Fade to invisible */
+  visibility: hidden;
+  height: 0;
+  padding: 0; /* Prevents taking up space when not visible */
+}

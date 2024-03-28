@@ -20,6 +20,7 @@ const CREATE_ORDER_MUTATION = gql`
 const HomePage = () => {
   const [, setPageContext] = usePageContext() // Destructure to get setState equivalent
   const [errorMessage, setErrorMessage] = useState('')
+  const [showError, setShowError] = useState(false)
 
   useEffect(() => {
     // Set the page context when the component mounts
@@ -30,6 +31,9 @@ const HomePage = () => {
 
   const { orderItems: items, clearOrder } = useOrder()
   const handleSubmitOrder = async () => {
+    setErrorMessage('') // Attempt to clear any pre-existing error messages.
+    setShowError(false) // Hide the error message while attempting a new submission.
+
     // Example data - replace with actual data from your application
     const userId = 1 // This should come from your authentication state/context
     const paymentMethod = 'Credit Card' // Example, adjust based on user selection
@@ -66,9 +70,33 @@ const HomePage = () => {
         detailedErrorMessage ||
         'An unexpected error occurred. Please try again.'
       setErrorMessage(message)
-      setTimeout(() => setErrorMessage(''), 5000) // Clear the error message after 5 seconds
+      setShowError(true) // Show the error message.
     }
   }
+
+  // Effect to handle showing and hiding error with fade
+  useEffect(() => {
+    if (errorMessage) {
+      setShowError(true) // Show error message when there's an error
+      const timer = setTimeout(() => {
+        setShowError(false) // Begin to hide after a delay
+      }, 5000) // Adjust time based on how long you want the message to be visible before fading
+
+      return () => clearTimeout(timer)
+    }
+  }, [errorMessage])
+
+  // Clear the error message from state after the fade out transition
+  useEffect(() => {
+    let timer
+    if (!showError && errorMessage) {
+      timer = setTimeout(() => {
+        setErrorMessage('') // Clear the error message state after fade out
+      }, 2000) // This should match the CSS transition time
+    }
+
+    return () => clearTimeout(timer)
+  }, [showError, errorMessage])
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-pink-300">
@@ -81,7 +109,11 @@ const HomePage = () => {
         <main className="mt-8">
           <section className="text-center">
             {errorMessage && (
-              <div className="mb-4 rounded-md bg-red-100 p-4 text-red-700">
+              <div
+                className={`error-message mb-4 rounded-md bg-red-100 p-4 text-red-700 ${
+                  !showError ? 'hide' : ''
+                }`}
+              >
                 {errorMessage}
               </div>
             )}
