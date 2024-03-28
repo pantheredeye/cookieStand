@@ -4,6 +4,7 @@ const OrderContext = createContext()
 
 export const OrderProvider = ({ children }) => {
   const [orderItems, setOrderItems] = useState([])
+  const [lastCleared, setLastCleared] = useState(Date.now())
 
   const updateItemQuantity = (itemId, quantity) => {
     console.log(JSON.stringify(orderItems))
@@ -26,28 +27,14 @@ export const OrderProvider = ({ children }) => {
     })
   }
 
-  // const submitOrder = async (orderDetails) => {
-  //   console.log('Submitting order:', orderDetails)
-  //   try {
-  //     const response = await createOrder({
-  //       variables: {
-  //         input: orderDetails,
-  //       },
-  //     })
-  //     console.log('Order submitted successfully', response.data)
-  //     clearOrder()
-  //   } catch (error) {
-  //     console.error('Error submitting order', error)
-  //   }
-  // }
-
   const clearOrder = () => {
     setOrderItems([])
+    setLastCleared(Date.now()) // Update timestamp to signal a reset
   }
 
   return (
     <OrderContext.Provider
-      value={{ orderItems, updateItemQuantity, clearOrder }}
+      value={{ orderItems, updateItemQuantity, clearOrder, lastCleared }}
     >
       {children}
     </OrderContext.Provider>

@@ -5,16 +5,20 @@ import { usePageContext } from 'src/providers/context/PageContext'
 
 const ItemQuantityAdjuster = ({ item }) => {
   const [pageContext] = usePageContext() // Use the context to get the current page type
-  const { updateItemQuantity } = useOrder() // Use the updateItemQuantity function from OrderContext
+  const { updateItemQuantity, lastCleared } = useOrder() // Use the updateItemQuantity function from OrderContext
   const [quantity, setQuantity] = useState(0) // Initialize with 0
+
+  // Reset quantity to 0 on order clear
+  useEffect(() => {
+    setQuantity(0)
+  }, [lastCleared])
 
   // Adjust quantity state based on the page context when the component mounts
   useEffect(() => {
     if (pageContext.pageType === 'Inventory') {
       setQuantity(item.quantity)
     }
-    // If it's not the Inventory page, we keep it at 0 or could adjust based on other conditions
-  }, [pageContext.pageType, item.quantity])
+  }, [pageContext.pageType, item.quantity, lastCleared])
 
   // This function updates both the local component state and the global order state
   const handleQuantityChange = (newQuantity) => {

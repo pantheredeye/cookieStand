@@ -26,10 +26,9 @@ const HomePage = () => {
     setPageContext({ pageType: 'Order' })
   }, [setPageContext])
 
-  const [createOrder, { loading, error }] = useMutation(CREATE_ORDER_MUTATION)
+  const [createOrder] = useMutation(CREATE_ORDER_MUTATION)
 
   const { orderItems: items, clearOrder } = useOrder()
-  console.log(items)
   const handleSubmitOrder = async () => {
     // Example data - replace with actual data from your application
     const userId = 1 // This should come from your authentication state/context
@@ -43,7 +42,7 @@ const HomePage = () => {
     }))
 
     try {
-      const response = await createOrder({
+      await createOrder({
         variables: {
           input: {
             userId,
@@ -67,6 +66,7 @@ const HomePage = () => {
         detailedErrorMessage ||
         'An unexpected error occurred. Please try again.'
       setErrorMessage(message)
+      setTimeout(() => setErrorMessage(''), 5000) // Clear the error message after 5 seconds
     }
   }
 
