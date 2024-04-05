@@ -7,7 +7,7 @@ Welcome to the README for the Neighborhood Baked Goods and Lemonade Store applic
 ### 1. Submit Order
 
 Customers can easily create and submit orders through the application. They will be prompted to log in or create an account, providing necessary details such as their address for pickup or delivery preferences. Customers can select from available purchase options, with the possibility of integrating payment methods like Stripe for online transactions. The system ensures that items unavailable due to inventory depletion are not displayed, and it provides notifications if an order exceeds available inventory.
-Sure, here are the checklists for each section:
+
 
 - [ ] Customer login/account creation functionality implemented.
 - [ ] Address input for pickup/delivery integrated.
@@ -46,7 +46,6 @@ Sellers have the ability to manage inventory effortlessly within the application
 #### Request Form
 
 To foster community engagement, users can submit requests for specific items they'd like to see offered within the store. This feature encourages user feedback and enhances the product offering based on customer preferences.
-
 
 ### User Personas
 
