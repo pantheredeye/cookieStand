@@ -7,18 +7,41 @@ Welcome to the README for the Neighborhood Baked Goods and Lemonade Store applic
 ### 1. Submit Order
 
 Customers can easily create and submit orders through the application. They will be prompted to log in or create an account, providing necessary details such as their address for pickup or delivery preferences. Customers can select from available purchase options, with the possibility of integrating payment methods like Stripe for online transactions. The system ensures that items unavailable due to inventory depletion are not displayed, and it provides notifications if an order exceeds available inventory.
+Sure, here are the checklists for each section:
+
+- [ ] Customer login/account creation functionality implemented.
+- [ ] Address input for pickup/delivery integrated.
+- [x] Selection of purchase options available.
+- [ ] Integration of payment methods (e.g., Stripe) for online transactions.
+- [x] Real-time inventory checking to prevent displaying unavailable items.
+- [ ] Notification system implemented for order status updates.
+- [x] Quantity validation to prevent ordering more items than available in inventory.
 
 ### 2. View Orders
 
 Sellers have access to a queue of pending orders, allowing them to track and manage incoming requests. Sellers can mark orders as 'completed,' which triggers inventory adjustments to reflect the fulfilled items. The system also ensures that inventory levels are maintained accurately by deducting quantities upon order submission or completion.
 
+- [ ] Queue of pending orders accessible to sellers.
+- [ ] Ability to mark orders as 'completed' by sellers.
+- [ ] Automatic inventory adjustments upon order completion.
+- [ ] Accurate maintenance of inventory levels by deducting quantities upon order submission or completion.
+
 ### 3. Order Notifications
 
 The application supports notifications to both sellers and buyers for order-related events. Sellers receive notifications upon order purchase, facilitating prompt action. Additionally, buyers can receive updates on their order status, enhancing communication and customer satisfaction. Initially, email notifications are implemented, with the potential for in-app notifications in future iterations.
 
+- [ ] Notification system set up for sellers upon order purchase.
+- [ ] Notification system set up for buyers to receive updates on order status.
+- [ ] Implementation of email notifications for initial version.
+- [ ] Consideration for in-app notifications in future iterations.
+
 ### 4. Edit Inventory
 
 Sellers have the ability to manage inventory effortlessly within the application. This includes adding, removing, and adjusting item quantities based on availability and demand. Access to inventory management is restricted to authorized owners, ensuring data integrity and security.
+
+- [ ] Inventory management functionality accessible to authorized sellers.
+- [ ] Ability to add, remove, and adjust item quantities within the application.
+- [ ] Restrictions on access to inventory management to ensure data integrity and security.
 
 #### Request Form
 
