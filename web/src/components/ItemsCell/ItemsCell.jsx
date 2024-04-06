@@ -22,7 +22,7 @@ export const Failure = ({ error }) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ items }) => {
+export const Success = ({ items, onDeleteItem }) => {
   const [orderDetails, setOrderDetails] = useState({})
 
   const handleQuantityChange = (itemId, quantity) => {
@@ -43,8 +43,10 @@ export const Success = ({ items }) => {
               Price: ${item.price}
             </p>
             <ItemQuantityAdjuster
+              key={item.id}
               item={item}
               onQuantityChange={handleQuantityChange}
+              onDeleteItem={onDeleteItem}
             />
           </div>
         </div>

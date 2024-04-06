@@ -22,22 +22,75 @@ const CREATE_ITEM_MUTATION = gql`
   }
 `
 
-const InventoryPage = () => {
-  const [, setPageContext] = usePageContext()
-  const formRef = useRef(null); // Create a ref for the form
+const DELETE_ITEM_MUTATION = gql`
+  mutation DeleteItemMutation($id: Int!) {
+    deleteItem(id: $id) {
+      id
+    }
+  }
+`
 
+const InventoryPage = () => {
+  const [deleteItem] = useMutation(DELETE_ITEM_MUTATION, {
+    refetchQueries: [
+      {
+        query: gql`
+          query ItemsQuery {
+            items {
+              id
+              name
+              description
+              price
+              quantity
+            }
+          }
+        `,
+      },
+    ],
+  })
+
+  const handleDeleteItem = async (itemId) => {
+    const isConfirmed = window.confirm(
+      'Are you sure you want to delete this item?'
+    )
+    if (isConfirmed) {
+      await deleteItem({ variables: { id: itemId } })
+      // Handle post-deletion logic here
+    }
+  }
+
+  const [, setPageContext] = usePageContext()
+  const formRef = useRef(null) // Create a ref for the form
 
   // useMutation hook for createItem mutation
-  const [createItem, { loading: creatingItem, error: createItemError }] = useMutation(CREATE_ITEM_MUTATION, {
-    refetchQueries: [{ query: gql`query ItemsQuery { items { id name description price quantity } }` }],
-  });
+  const [createItem, { loading: creatingItem, error: createItemError }] =
+    useMutation(CREATE_ITEM_MUTATION, {
+      refetchQueries: [
+        {
+          query: gql`
+            query ItemsQuery {
+              items {
+                id
+                name
+                description
+                price
+                quantity
+              }
+            }
+          `,
+        },
+      ],
+    })
 
   useEffect(() => {
     setPageContext({ pageType: 'Inventory' })
   }, [setPageContext])
 
   // useMutation hook for updateInventory mutation
-  const [updateInventory, { loading: updatingInventory, error: updateInventoryError }] = useMutation(UPDATE_INVENTORY_MUTATION)
+  const [
+    updateInventory,
+    { loading: updatingInventory, error: updateInventoryError },
+  ] = useMutation(UPDATE_INVENTORY_MUTATION)
 
   const handleUpdateInventory = async () => {
     try {
@@ -76,8 +129,7 @@ const InventoryPage = () => {
     try {
       await createItem({ variables: { input: itemDetails } })
       // alert('Item added successfully')
-      formRef.current.reset(); // Reset the form on successful item creation
-
+      formRef.current.reset() // Reset the form on successful item creation
     } catch (error) {
       console.error('Error creating item:', error)
     }
@@ -95,7 +147,7 @@ const InventoryPage = () => {
           </header>
           <main className="mt-8">
             <section className="text-center">
-              <ItemsCell />
+              <ItemsCell onDeleteItem={handleDeleteItem} />
               <div className="mt-4">
                 <button
                   onClick={handleUpdateInventory}
@@ -106,7 +158,11 @@ const InventoryPage = () => {
                 </button>
               </div>
               <div className="mt-8 rounded-lg bg-white p-8 shadow-lg">
-                <form  ref={formRef} onSubmit={handleAddItem} className="space-y-6">
+                <form
+                  ref={formRef}
+                  onSubmit={handleAddItem}
+                  className="space-y-6"
+                >
                   <div>
                     <label
                       htmlFor="item-name"
@@ -196,10 +252,14 @@ const InventoryPage = () => {
                 </form>
               </div>
               {createItemError && (
-                <p className="text-red-500">Error creating item: {createItemError.message}</p>
+                <p className="text-red-500">
+                  Error creating item: {createItemError.message}
+                </p>
               )}
               {updateInventoryError && (
-                <p className="text-red-500">Error updating inventory: {updateInventoryError.message}</p>
+                <p className="text-red-500">
+                  Error updating inventory: {updateInventoryError.message}
+                </p>
               )}
             </section>
           </main>

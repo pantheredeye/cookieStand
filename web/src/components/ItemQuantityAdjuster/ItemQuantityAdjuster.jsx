@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import { useOrder } from 'src/providers/context/OrderContext' // Import useOrder hook
 import { usePageContext } from 'src/providers/context/PageContext'
 
-const ItemQuantityAdjuster = ({ item }) => {
+const ItemQuantityAdjuster = ({ item, onDeleteItem }) => {
   const [pageContext] = usePageContext() // Use the context to get the current page type
   const { updateItemQuantity, lastCleared } = useOrder() // Use the updateItemQuantity function from OrderContext
   const [quantity, setQuantity] = useState(0) // Initialize with 0
@@ -69,6 +69,14 @@ const ItemQuantityAdjuster = ({ item }) => {
       >
         +
       </button>
+      {onDeleteItem && pageContext.pageType === 'Inventory' && (
+        <button
+          onClick={() => onDeleteItem(item.id)}
+          className="rounded bg-red-500 px-3 py-1 text-sm font-bold text-white hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-300"
+        >
+          Delete
+        </button>
+      )}
     </div>
   )
 }
