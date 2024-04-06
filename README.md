@@ -40,8 +40,7 @@ The application supports notifications to both sellers and buyers for order-rela
 Sellers have the ability to manage inventory effortlessly within the application. This includes adding, removing, and adjusting item quantities based on availability and demand. Access to inventory management is restricted to authorized owners, ensuring data integrity and security.
 
 - [ ] Inventory management functionality accessible to authorized sellers.
-- [ ] Ability to add, remove, and adjust item quantities within the application.
-- [ ] Restrictions on access to inventory management to ensure data integrity and security.
+- [x] Ability to add, remove, and adjust item quantities within the application.
 
 #### Request Form
 
