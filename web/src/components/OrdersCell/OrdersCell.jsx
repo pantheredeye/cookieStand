@@ -4,6 +4,21 @@ export const QUERY = gql`
   query OrdersQuery {
     orders {
       id
+      user {
+        name
+        address
+      }
+      orderItems {
+        quantity
+        item {
+          name
+          price
+        }
+      }
+      paymentMethod
+      status
+      createdAt
+      updatedAt
     }
   }
 `
@@ -18,10 +33,10 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ orders }) => {
   return (
-    <ul>
+    <div className="flex flex-wrap justify-center gap-4">
       {orders.map((item) => {
         return <OrderItem key={item.id} order={item} />
       })}
-    </ul>
+    </div>
   )
 }

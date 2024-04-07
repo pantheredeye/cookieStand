@@ -6,6 +6,8 @@ export const schema = gql`
     orderItems: [OrderItem]!
     paymentMethod: String!
     status: String!
+    createdAt: DateTime!
+    updatedAt: DateTime!
   }
 
   type Query {
