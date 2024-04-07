@@ -4,11 +4,12 @@ import { Metadata } from '@redwoodjs/web'
 import { gql, useMutation } from '@redwoodjs/web'
 
 import ItemsCell from 'src/components/ItemsCell/ItemsCell'
+import { useInventory } from 'src/providers/context/InventoryContext'
 import { usePageContext } from 'src/providers/context/PageContext'
 
 const UPDATE_INVENTORY_MUTATION = gql`
-  mutation UpdateInventory($updateItems: [UpdateItemInput!]!) {
-    updateItems(input: $updateItems) {
+  mutation UpdateInventory($items: [UpdateItemInput!]!) {
+    updateItems(items: $items) {
       id
       quantity
     }
@@ -31,6 +32,8 @@ const DELETE_ITEM_MUTATION = gql`
 `
 
 const InventoryPage = () => {
+  const { inventoryUpdateItems } = useInventory()
+
   const [deleteItem] = useMutation(DELETE_ITEM_MUTATION, {
     refetchQueries: [
       {
@@ -62,7 +65,6 @@ const InventoryPage = () => {
   const [, setPageContext] = usePageContext()
   const formRef = useRef(null) // Create a ref for the form
 
-  // useMutation hook for createItem mutation
   const [createItem, { loading: creatingItem, error: createItemError }] =
     useMutation(CREATE_ITEM_MUTATION, {
       refetchQueries: [
@@ -94,19 +96,18 @@ const InventoryPage = () => {
 
   const handleUpdateInventory = async () => {
     try {
+      console.log('inventoryUpdateItems', inventoryUpdateItems)
       const result = await updateInventory({
         variables: {
-          inventoryItems: inventoryItemDetails.map((item) => ({
-            itemId: item.id,
+          items: inventoryUpdateItems.map((item) => ({
+            id: item.itemId, // Change this from item.id to item.itemId
             quantity: item.quantity,
           })),
         },
       })
-      if (!result || !result.data) {
-        throw new Error('Failed to update inventory')
-      }
       alert(`Inventory Updated`)
     } catch (error) {
+      // Handle error
       console.error('Error updating inventory:', error)
     }
   }

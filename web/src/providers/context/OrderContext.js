@@ -7,9 +7,7 @@ export const OrderProvider = ({ children }) => {
   const [lastCleared, setLastCleared] = useState(Date.now())
 
   const updateItemQuantity = (itemId, quantity) => {
-    console.log(JSON.stringify(orderItems))
     setOrderItems((currentItems) => {
-      console.log(JSON.stringify(currentItems))
       const itemIndex = currentItems.findIndex((item) => item.itemId === itemId)
       if (itemIndex >= 0 && quantity === 0) {
         // Remove item from order if quantity is 0

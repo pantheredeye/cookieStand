@@ -23,6 +23,19 @@ export const updateItem = ({ id, input }) => {
   })
 }
 
+export const updateItems = async ({ items }) => {
+  console.log('updateItems', items)
+  return db.$transaction(
+    items.map(({ id, quantity }) =>
+      db.item.update({
+        where: { id }, // Correctly reference itemId here
+        data: { quantity }, // Update quantity
+      })
+    )
+  );
+};
+
+
 export const deleteItem = ({ id }) => {
   return db.item.delete({
     where: { id },
