@@ -5,6 +5,7 @@ export const orders = () => {
 }
 
 export const order = ({ id }) => {
+  console.log('id', id)
   return db.order.findUnique({
     where: { id },
   })
