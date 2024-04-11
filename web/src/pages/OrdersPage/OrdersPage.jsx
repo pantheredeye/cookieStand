@@ -1,5 +1,6 @@
-import OrdersCell from 'src/components/OrdersCell'
+import { navigate } from '@redwoodjs/router'
 
+import OrdersCell from 'src/components/OrdersCell'
 const OrdersPage = () => {
   return (
     <div className="flex min-h-screen items-center justify-center bg-pink-300">
@@ -21,6 +22,14 @@ const OrdersPage = () => {
               </div>
             )} */}
             <OrdersCell />
+            <div className="mt-4">
+              <button
+                onClick={() => navigate('/orders')}
+                className="ml-4 mt-4 rounded bg-blue-400 px-6 py-2 font-bold text-white"
+              >
+                Go to Orders
+              </button>
+            </div>
           </section>
         </main>
       </div>

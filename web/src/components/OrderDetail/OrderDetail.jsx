@@ -1,9 +1,24 @@
+import { useMutation, navigate } from '@redwoodjs/web'
+
 import OrderDetailItem from 'src/components/OrderDetailItem/OrderDetailItem'
+const UPDATE_ORDER_STATUS_MUTATION = gql`
+  mutation UpdateOrderStatusMutation($id: Int!, $status: String!) {
+    updateOrder(id: $id, input: { status: $status }) {
+      id
+      status
+    }
+  }
+`
 
 const OrderDetail = ({ order }) => {
-  const handleComplete = () => {
+  const [updateOrderStatus] = useMutation(UPDATE_ORDER_STATUS_MUTATION)
+
+  const handleComplete = async () => {
     console.log('Completing order:', order.id)
-    // Logic to complete the order
+    await updateOrderStatus({
+      variables: { id: order.id, status: 'fulfilled' },
+    })
+    navigate('/orders') // Navigate back to the orders page
   }
   const calculateTotal = () => {
     return order.orderItems.reduce(
