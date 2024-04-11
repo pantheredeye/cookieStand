@@ -1,4 +1,4 @@
-import OrderItem from "../OrderItem/OrderItem"
+import OrderItem from '../OrderItem/OrderItem'
 
 export const QUERY = gql`
   query OrdersQuery {

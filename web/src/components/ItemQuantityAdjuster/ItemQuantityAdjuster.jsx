@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
-import { useOrder } from 'src/providers/context/OrderContext'
 import { useInventory } from 'src/providers/context/InventoryContext'
+import { useOrder } from 'src/providers/context/OrderContext'
 import { usePageContext } from 'src/providers/context/PageContext'
 
 const ItemQuantityAdjuster = ({ item, onDeleteItem }) => {

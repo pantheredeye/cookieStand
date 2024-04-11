@@ -7,13 +7,12 @@ const OrderItem = ({ order }) => {
       <Link to={`/order/${order.id}`}>
         {/* User Info */}
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-blue-900">Customer:</h3>
-          <p className="text-lg">{order.user.name}</p>
+          <h3 className="text-xl font-bold text-blue-900">Order:</h3>
+          <p className="text-lg">{order.id}</p>
           <p className="text-md text-gray-700">
-            {order.user.address || 'Address not provided'}
+            {order.user.name || 'No Customer?'}
           </p>
         </div>
-        {/* The rest of your order card layout */}
       </Link>
     </div>
   )

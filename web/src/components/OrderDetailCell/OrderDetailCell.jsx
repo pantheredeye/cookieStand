@@ -1,4 +1,4 @@
-import OrderDetail from "../OrderDetail/OrderDetail"
+import OrderDetail from '../OrderDetail/OrderDetail'
 
 export const QUERY = gql`
   query FindOrderDetailQuery($id: Int!) {
@@ -32,5 +32,9 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ order }) => {
-  return <div><OrderDetail order={order} /></div>
+  return (
+    <div>
+      <OrderDetail order={order} />
+    </div>
+  )
 }

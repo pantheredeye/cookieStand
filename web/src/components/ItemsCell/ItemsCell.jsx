@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
-import { PageContext } from 'src/providers/context/PageContext';
 
 import ItemQuantityAdjuster from 'src/components/ItemQuantityAdjuster'
+import { PageContext } from 'src/providers/context/PageContext'
 
 export const QUERY = gql`
   query ItemsQuery {
@@ -25,12 +25,13 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ items, onDeleteItem }) => {
   const [orderDetails, setOrderDetails] = useState({})
-  const [pageContext] = useContext(PageContext);
+  const [pageContext] = useContext(PageContext)
 
   // Example client-side filtering based on pageType context
-  const filteredItems = pageContext.pageType === 'Order'
-    ? items.filter(item => item.quantity > 0)
-    : items;
+  const filteredItems =
+    pageContext.pageType === 'Order'
+      ? items.filter((item) => item.quantity > 0)
+      : items
 
   const handleQuantityChange = (itemId, quantity) => {
     setOrderDetails({

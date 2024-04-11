@@ -32,9 +32,8 @@ export const updateItems = async ({ items }) => {
         data: { quantity }, // Update quantity
       })
     )
-  );
-};
-
+  )
+}
 
 export const deleteItem = ({ id }) => {
   return db.item.delete({

@@ -1,4 +1,5 @@
 import { useParams } from '@redwoodjs/router'
+
 import OrderDetailCell from 'src/components/OrderDetailCell'
 
 const OrderDetailPage = () => {

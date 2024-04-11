@@ -23,7 +23,10 @@ export const InventoryProvider = ({ children }) => {
         return updatedItems
       } else if (quantity > 0) {
         // Add new item with quantity if not already in array
-        console.log('add new item with quantity if not already in array', currentItems)
+        console.log(
+          'add new item with quantity if not already in array',
+          currentItems
+        )
 
         return [...currentItems, { itemId, quantity }]
       }
@@ -33,9 +36,10 @@ export const InventoryProvider = ({ children }) => {
     })
   }
 
-
   return (
-    <InventoryContext.Provider value={{ inventoryUpdateItems, updateInventoryItemQuantity }}>
+    <InventoryContext.Provider
+      value={{ inventoryUpdateItems, updateInventoryItemQuantity }}
+    >
       {children}
     </InventoryContext.Provider>
   )
