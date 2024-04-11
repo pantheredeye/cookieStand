@@ -1,8 +1,8 @@
 import OrderItem from '../OrderItem/OrderItem'
 
 export const QUERY = gql`
-  query OrdersQuery {
-    orders {
+  query OrdersQuery($filter: OrderFilterInput) {
+    orders(filter: $filter) {
       id
       user {
         name

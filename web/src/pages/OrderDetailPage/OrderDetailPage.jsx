@@ -1,4 +1,4 @@
-import { useParams } from '@redwoodjs/router'
+import { navigate, useParams } from '@redwoodjs/router'
 
 import OrderDetailCell from 'src/components/OrderDetailCell'
 
@@ -26,10 +26,10 @@ const OrderDetailPage = () => {
             <OrderDetailCell id={parseInt(orderId, 10)} />
             <div className="mt-4">
               <button
-                // onClick={handleSubmitOrder}
-                className="transform rounded-full bg-yellow-400 px-8 py-3 text-xl font-bold text-blue-900 shadow-lg transition hover:scale-105 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300"
+                onClick={() => navigate('/orders')}
+                className="ml-4 mt-4 rounded bg-blue-400 px-6 py-2 font-bold text-white"
               >
-                Complete Order
+                Go to Orders
               </button>
             </div>
           </section>
