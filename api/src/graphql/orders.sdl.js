@@ -11,8 +11,12 @@ export const schema = gql`
   }
 
   type Query {
-    orders: [Order!]! @requireAuth
+    orders(filter: OrderFilterInput): [Order!]! @requireAuth
     order(id: Int!): Order @requireAuth
+  }
+
+  input OrderFilterInput {
+    status: String
   }
 
   input CreateOrderInput {

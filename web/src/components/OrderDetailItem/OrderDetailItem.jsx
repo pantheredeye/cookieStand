@@ -1,7 +1,7 @@
 // src/components/OrderDetailItems/OrderDetailItems.js
 
 const OrderDetailItem = ({ items }) => {
-  if (!items.length) return <p>No items in this order.</p>;
+  if (!items.length) return <p>No items in this order.</p>
 
   return (
     <>
@@ -10,9 +10,9 @@ const OrderDetailItem = ({ items }) => {
         <table className="min-w-full text-sm">
           <thead>
             <tr>
-              <th className="px-4 py-2 font-bold text-left">Name</th>
-              <th className="px-4 py-2 font-bold text-left">Qty</th>
-              <th className="px-4 py-2 font-bold text-left">Price</th>
+              <th className="px-4 py-2 text-left font-bold">Name</th>
+              <th className="px-4 py-2 text-left font-bold">Qty</th>
+              <th className="px-4 py-2 text-left font-bold">Price</th>
             </tr>
           </thead>
           <tbody>
@@ -27,7 +27,7 @@ const OrderDetailItem = ({ items }) => {
         </table>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default OrderDetailItem;
+export default OrderDetailItem

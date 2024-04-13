@@ -1,7 +1,16 @@
 import { db } from 'src/lib/db'
 
-export const orders = () => {
-  return db.order.findMany()
+export const orders = ({ filter }) => {
+  const where =
+    filter && Object.keys(filter).length
+      ? {
+          NOT: [{ status: filter.status }],
+        }
+      : {}
+
+  return db.order.findMany({
+    where,
+  })
 }
 
 export const order = ({ id }) => {
