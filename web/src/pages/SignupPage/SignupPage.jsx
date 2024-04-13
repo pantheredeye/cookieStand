@@ -14,7 +14,6 @@ import { Metadata } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
 import { useAuth } from 'src/auth'
-
 const SignupPage = () => {
   const { isAuthenticated, signUp } = useAuth()
 
@@ -24,99 +23,108 @@ const SignupPage = () => {
     }
   }, [isAuthenticated])
 
-  // focus on username box on page load
-  const usernameRef = useRef(null)
+  const emailRef = useRef(null)
   useEffect(() => {
-    usernameRef.current?.focus()
+    emailRef.current?.focus()
   }, [])
 
   const onSubmit = async (data) => {
-    const response = await signUp({
-      username: data.username,
-      password: data.password,
-    })
-
-    if (response.message) {
-      toast(response.message)
-    } else if (response.error) {
-      toast.error(response.error)
-    } else {
-      // user is signed in automatically
-      toast.success('Welcome!')
+    try {
+      const response = await signUp(data)
+      if (response.error) {
+        toast.error(response.error)
+      } else {
+        toast.success('Welcome! Account created successfully.')
+        navigate(routes.home())
+      }
+    } catch (error) {
+      toast.error('An unexpected error occurred.')
+      console.error('Signup error:', error)
     }
   }
 
   return (
     <>
       <Metadata title="Signup" />
-
-      <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Signup</h2>
-            </header>
-
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+      <main className="flex min-h-screen items-center justify-center bg-pink-300">
+        <div className="container mx-auto max-w-4xl bg-white p-6 shadow-lg">
+          <header className="rounded-lg bg-blue-900 p-8 text-center text-white shadow-xl">
+            <h2 className="font-playful text-3xl uppercase tracking-widest text-white">
+              Sign Up
+            </h2>
+          </header>
+          <div className="mt-8">
+            <Form onSubmit={onSubmit} className="flex flex-col space-y-4">
+              <div className="flex flex-col justify-between gap-4 md:flex-row">
+                <div className="md:w-1/2">
                   <Label
-                    name="username"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
+                    name="email"
+                    className="text-xl font-bold text-blue-900"
                   >
-                    Username
+                    Email
                   </Label>
                   <TextField
-                    name="username"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    ref={usernameRef}
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Username is required',
-                      },
-                    }}
+                    name="email"
+                    className="rw-input form-input w-full rounded border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
+                    ref={emailRef}
+                    validation={{ required: true }}
                   />
-
-                  <FieldError name="username" className="rw-field-error" />
-
+                  <FieldError name="email" className="rw-field-error" />
+                </div>
+                <div className="md:w-1/2">
+                  <Label
+                    name="name"
+                    className="text-xl font-bold text-blue-900"
+                  >
+                    Name
+                  </Label>
+                  <TextField
+                    name="name"
+                    className="rw-input form-input w-full rounded border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
+                    validation={{ required: true }}
+                  />
+                  <FieldError name="name" className="rw-field-error" />
+                </div>
+              </div>
+              <div className="flex flex-col justify-between gap-4 md:flex-row">
+                <div className="md:w-1/2">
+                  <Label
+                    name="address"
+                    className="text-xl font-bold text-blue-900"
+                  >
+                    Address
+                  </Label>
+                  <TextField
+                    name="address"
+                    className="rw-input form-input w-full rounded border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
+                  />{' '}
+                  <FieldError name="address" className="rw-field-error" />
+                </div>
+                <div className="md:w-1/2">
                   <Label
                     name="password"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
+                    className="text-xl font-bold text-blue-900"
                   >
                     Password
                   </Label>
                   <PasswordField
                     name="password"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
+                    className="rw-input form-input w-full rounded border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
                     autoComplete="current-password"
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Password is required',
-                      },
-                    }}
+                    validation={{ required: true, minLength: 8 }}
                   />
-
                   <FieldError name="password" className="rw-field-error" />
-
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">
-                      Sign Up
-                    </Submit>
-                  </div>
-                </Form>
+                </div>
               </div>
-            </div>
+              <Submit className="mt-4 rounded bg-yellow-400 px-6 py-2 font-bold text-blue-900">
+                Sign Up
+              </Submit>
+            </Form>
           </div>
-          <div className="rw-login-link">
-            <span>Already have an account?</span>{' '}
-            <Link to={routes.login()} className="rw-link">
+          <div className="mt-4 text-center">
+            <span>Already have an account? </span>
+            <Link to={routes.login()} className="text-blue-900 underline">
               Log in!
             </Link>
           </div>
