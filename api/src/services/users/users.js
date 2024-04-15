@@ -11,6 +11,7 @@ export const user = ({ id }) => {
 }
 
 export const createUser = ({ input }) => {
+  console.log(input)
   return db.user.create({
     data: input,
   })

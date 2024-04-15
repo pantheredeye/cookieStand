@@ -59,13 +59,13 @@ const SignupPage = () => {
               <div className="flex flex-col justify-between gap-4 md:flex-row">
                 <div className="md:w-1/2">
                   <Label
-                    name="email"
+                    name="username"
                     className="text-xl font-bold text-blue-900"
                   >
                     Email
                   </Label>
                   <TextField
-                    name="email"
+                    name="username"
                     className="rw-input form-input w-full rounded border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
                     ref={emailRef}
                     validation={{ required: true }}

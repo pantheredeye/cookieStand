@@ -4,6 +4,7 @@ import { cookieName } from 'src/lib/auth'
 import { db } from 'src/lib/db'
 
 export const handler = async (event, context) => {
+
   const forgotPasswordOptions = {
     // handler() is invoked after verifying that a user was found with the given
     // username. This is where you can send the user an email with a link to
@@ -123,7 +124,7 @@ export const handler = async (event, context) => {
           email: username,
           hashedPassword: hashedPassword,
           salt: salt,
-          // name: userAttributes.name
+          name: _userAttributes.name
         },
       })
     },
