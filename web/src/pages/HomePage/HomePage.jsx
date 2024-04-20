@@ -1,14 +1,11 @@
 import { useEffect, useState } from 'react'
-
 import { useMutation } from '@redwoodjs/web'
-
 import ItemsCell from 'src/components/ItemsCell/ItemsCell'
 import { useOrder } from 'src/providers/context/OrderContext'
 import { usePageContext } from 'src/providers/context/PageContext'
-
 import { navigate, routes } from '@redwoodjs/router'
-
 import { useAuth } from 'src/auth'
+
 const CREATE_ORDER_MUTATION = gql`
   mutation CreateOrderMutation($input: CreateOrderInput!) {
     createOrder(input: $input) {
@@ -36,9 +33,10 @@ const HomePage = () => {
   const { orderItems: items, clearOrder } = useOrder()
   const handleSubmitOrder = async () => {
     if (!isAuthenticated) {
-      navigate(routes.login({redirectTo: routes.home()}))
+      navigate(routes.login({ redirectTo: routes.home() }))
       return
     }
+
     setErrorMessage('') // Attempt to clear any pre-existing error messages.
     setShowError(false) // Hide the error message while attempting a new submission.
 

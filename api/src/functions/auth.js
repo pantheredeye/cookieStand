@@ -105,6 +105,9 @@ export const handler = async (event, context) => {
     // were included in the object given to the `signUp()` function you got
     // from `useAuth()`.
     //
+    // To use userAttributes, change `userAttributes: _userAttributes` to
+    // `userAttributes` and uncomment the line in data.
+    //
     // If you want the user to be immediately logged in, return the user that
     // was created.
     //

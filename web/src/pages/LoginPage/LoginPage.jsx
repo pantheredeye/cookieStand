@@ -9,7 +9,7 @@ import {
   Submit,
   FieldError,
 } from '@redwoodjs/forms'
-import { Link, navigate, routes } from '@redwoodjs/router'
+import { Link, navigate, routes, useParams } from '@redwoodjs/router'
 import { Metadata } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
 
@@ -17,12 +17,13 @@ import { useAuth } from 'src/auth'
 
 const LoginPage = () => {
   const { isAuthenticated, logIn } = useAuth()
+  const { redirectTo } = useParams()
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(routes.home())
+      navigate(redirectTo || routes.home())
     }
-  }, [isAuthenticated])
+  }, [isAuthenticated, redirectTo])
 
   const usernameRef = useRef(null)
   useEffect(() => {
@@ -47,81 +48,72 @@ const LoginPage = () => {
   return (
     <>
       <Metadata title="Login" />
-
-      <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Login</h2>
-            </header>
-
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <Label
-                    name="username"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    Username
-                  </Label>
-                  <TextField
-                    name="username"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    ref={usernameRef}
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Username is required',
-                      },
-                    }}
-                  />
-
-                  <FieldError name="username" className="rw-field-error" />
-
-                  <Label
-                    name="password"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    Password
-                  </Label>
-                  <PasswordField
-                    name="password"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    autoComplete="current-password"
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Password is required',
-                      },
-                    }}
-                  />
-
-                  <div className="rw-forgot-link">
-                    <Link
-                      to={routes.forgotPassword()}
-                      className="rw-forgot-link"
-                    >
-                      Forgot Password?
-                    </Link>
-                  </div>
-
-                  <FieldError name="password" className="rw-field-error" />
-
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Login</Submit>
-                  </div>
-                </Form>
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
+      <main className="flex min-h-screen items-center justify-center bg-pink-300">
+        <div className="container mx-auto max-w-4xl bg-white p-6 shadow-lg">
+          <header className="rounded-lg bg-blue-900 p-8 text-center text-white shadow-xl">
+            <h2 className="font-playful text-3xl uppercase tracking-widest text-white">
+              Log In
+            </h2>
+          </header>
+          <div className="mt-8">
+            <Form onSubmit={onSubmit} className="flex flex-col space-y-4">
+              <div className="flex flex-col justify-between gap-4">
+                <Label
+                  name="username"
+                  className="text-xl font-bold text-blue-900"
+                >
+                  Username
+                </Label>
+                <TextField
+                  name="username"
+                  className="rw-input form-input w-full rounded border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
+                  ref={usernameRef}
+                  validation={{
+                    required: {
+                      value: true,
+                      message: 'Username is required',
+                    },
+                  }}
+                />
+                <FieldError name="username" className="rw-field-error" />
               </div>
-            </div>
+              <div className="flex flex-col justify-between gap-4">
+                <Label
+                  name="password"
+                  className="text-xl font-bold text-blue-900"
+                >
+                  Password
+                </Label>
+                <PasswordField
+                  name="password"
+                  className="rw-input form-input w-full rounded border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
+                  autoComplete="current-password"
+                  validation={{
+                    required: {
+                      value: true,
+                      message: 'Password is required',
+                    },
+                  }}
+                />
+                <FieldError name="password" className="rw-field-error" />
+              </div>
+              <div className="text-right">
+                <Link
+                  to={routes.forgotPassword()}
+                  className="text-blue-900 underline"
+                >
+                  Forgot Password?
+                </Link>
+              </div>
+              <Submit className="mt-4 rounded bg-yellow-400 px-6 py-2 font-bold text-blue-900">
+                Log In
+              </Submit>
+            </Form>
           </div>
-          <div className="rw-login-link">
-            <span>Don&apos;t have an account?</span>{' '}
-            <Link to={routes.signup()} className="rw-link">
+          <div className="mt-4 text-center">
+            <span>Don't have an account? </span>
+            <Link to={routes.signup()} className="text-blue-900 underline">
               Sign up!
             </Link>
           </div>
