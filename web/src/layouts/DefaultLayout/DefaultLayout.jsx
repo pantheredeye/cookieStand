@@ -1,12 +1,11 @@
 import { Link, routes } from '@redwoodjs/router'
 import { useAuth } from 'src/auth'
 
-
 const DefaultLayout = ({ children }) => {
   const { isAuthenticated, hasRole, logOut } = useAuth()
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <header className="bg-blue-900 text-white">
         <nav className="container mx-auto flex items-center justify-between p-4">
           <Link to={routes.home()} className="font-playful text-2xl tracking-widest">
@@ -15,7 +14,7 @@ const DefaultLayout = ({ children }) => {
           <ul className="flex space-x-4">
             {isAuthenticated ? (
               <>
-                {hasRole(['owner', 'seller']) && (
+                {hasRole('owner') && (
                   <>
                     <li>
                       <Link to={routes.orders()} className="hover:text-yellow-400">
@@ -58,8 +57,8 @@ const DefaultLayout = ({ children }) => {
           </ul>
         </nav>
       </header>
-      <main>{children}</main>
-    </>
+      <main className="flex-grow">{children}</main>
+    </div>
   )
 }
 
