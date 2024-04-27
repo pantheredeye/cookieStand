@@ -12,7 +12,7 @@ const Routes = () => {
         <Route path="/signup" page={SignupPage} name="signup" />
         <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
         <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
-        <PrivateSet unauthenticated="home" roles={['owner', 'seller']} wrap={DefaultLayout}>
+        <PrivateSet unauthenticated="home" roles={['owner', 'seller']}>
           <Route path="/order/{orderId}" name="orderDetail" page={OrderDetailPage} />
           <Route path="/orders" page={OrdersPage} name="orders" />
           <Route path="/inventory" page={InventoryPage} name="inventory" />

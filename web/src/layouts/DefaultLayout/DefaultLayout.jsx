@@ -11,18 +11,24 @@ const DefaultLayout = ({ children }) => {
           <Link to={routes.home()} className="font-playful text-2xl tracking-widest">
             The Cookie Stand
           </Link>
-          <ul className="flex space-x-4">
+          <ul className="flex items-center space-x-4">
             {isAuthenticated ? (
               <>
                 {hasRole('owner') && (
                   <>
                     <li>
-                      <Link to={routes.orders()} className="hover:text-yellow-400">
+                      <Link
+                        to={routes.orders()}
+                        className="rounded bg-yellow-400 px-4 py-2 font-bold text-blue-900 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300"
+                      >
                         Orders
                       </Link>
                     </li>
                     <li>
-                      <Link to={routes.inventory()} className="hover:text-yellow-400">
+                      <Link
+                        to={routes.inventory()}
+                        className="rounded bg-yellow-400 px-4 py-2 font-bold text-blue-900 hover:bg-yellow-500 focus:outline-none focus:ring focus:ring-yellow-300"
+                      >
                         Inventory
                       </Link>
                     </li>
