@@ -110,3 +110,13 @@ To support cash payments, we can provide instructions on how customers can pay i
 - buttonText: '#F21530', // Button Text Color
 
 
+## TODO from last dev. round:
+
+- Payments
+- Top Bar Consistency - Move the Page Title to the Nav Bar. Right now it is above the content and it jumps up and down the page between orders/ home and inventory
+- Inventory Cleanup - Redesign inventory to be more obvious for adding/updating/etc. The new item form is at the botom and could easily get missed. Clicking the 'Update Inventory' button is not intuitive - kinda like a dirty state. There isn't anything to indicate that 'Now you should click this button since you have changed inventory values to save'
+- Order Details styling
+- Notifications on new orders
+- Notification on Successful Order
+- Keep State when Submitting order and have to go to login/sign up
+- Prevent empty order
