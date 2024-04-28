@@ -120,3 +120,4 @@ To support cash payments, we can provide instructions on how customers can pay i
 - Notification on Successful Order
 - Keep State when Submitting order and have to go to login/sign up
 - Prevent empty order
+- Clear itemQuantityAdjuster count when going from inventory -> home using the "CookieStand" top bar link
