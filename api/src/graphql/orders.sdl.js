@@ -32,6 +32,7 @@ export const schema = gql`
   }
   input UpdateOrderInput {
     userId: Int
+    orderItems: [OrderItemInput!]!
     paymentMethod: String
     status: String
   }
