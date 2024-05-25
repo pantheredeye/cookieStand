@@ -26,15 +26,17 @@ export const schema = gql`
     status: String!
   }
 
-  input OrderItemInput {
-    itemId: Int!
-    quantity: Int!
-  }
+
   input UpdateOrderInput {
     userId: Int
     orderItems: [OrderItemInput!]!
     paymentMethod: String
     status: String
+  }
+
+  input OrderItemInput {
+    itemId: Int!
+    quantity: Int!
   }
 
   type Mutation {
